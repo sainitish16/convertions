@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block head %}
+
+<title>No route found</title>
+
+{% endblock %}
+
+{% block body %}
+<script>
+    $(document).ready(function() {
+        setTimeout(() => {
+            document.location.href = "/";
+        },5000)
+    })
+</script>
+<center>
+    <h1>No route found..!</h1>
+    <p>You will be redirected to the home page in <span style="color: red;">5 seconds</span> </p>
+</center>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Converstion</title>
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>What is currency?</h2>
+            <p>A currency in the most specific sense is money in any form when in use or circulation as a medium of
+                exchange,
+                especially circulating banknotes and coins. A more general definition is that a currency is a system of
+                money in
+                common use, especially for people in a nation</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Purpose of currency?</h2>
+            <p>Currency is a medium of exchange for goods and services. In short, it's money, in the form of paper or
+                coins, usually issued by a government and generally accepted at its face value as a method of payment.
+            </p>
+        </div>
+    </div>
+
+    <hr />
+    <h1>Currency rates</h1>
+    <form action="/currency-rates" method="post">
+        <div class="input-group mb-3">
+            <input type="number" name="units" id="units" min="0"
+                value="{% if dataToSend  %}{{ dataToSend.units }}{% endif %}" class="form-control"
+                placeholder="Enter amount" required />
+            <select name="from" id="from" class="form-control" required>
+                {% if dataToSend %}
+                {% for i in cntryCodesData %}
+
+                {% if dataToSend.from == i['code'] %}
+                <option value="{{ i['code'] }}" selected>{{ i['code'] }} - {{ i['desc'] }}</option>
+                {% else %}
+                <option value="{{ i['code'] }}">{{ i['code'] }} - {{ i['desc'] }}</option>
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                {% for i in cntryCodesData %}
+                <option value="{{ i['code'] }}">{{ i['code'] }} - {{ i['desc'] }}</option>
+
+                {% endfor %}
+                {% endif %}
+            </select>
+            <select name="to" id="to" class="form-control" required>
+                {% if dataToSend %}
+                {% for i in cntryCodesData %}
+
+                {% if dataToSend.to == i['code'] %}
+                <option value="{{ i['code'] }}" selected>{{ i['code'] }} - {{ i['desc'] }}</option>
+                {% else %}
+                <option value="{{ i['code'] }}">{{ i['code'] }} - {{ i['desc'] }}</option>
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                {% for i in cntryCodesData %}
+                <option value="{{ i['code'] }}">{{ i['code'] }} - {{ i['desc'] }}</option>
+
+                {% endfor %}
+                {% endif %}
+            </select>
+            <div class="input-group-prepend">
+                <button class="btn btn-success" type="submit">Convert</button>
+            </div>
+        </div>
+
+    </form>
+    {% if dataToSend %}
+    {{ dataToSend.success }}
+    {% endif %}
+    <h2>How many types of currency are there?</h2>
+    <h3>180</h3>
+    <p>How many world currencies are there? Well, as you may have guessed from the title, there are 180 current
+        currencies across the world, as recognized by the United Nations. The British pound is the world's oldest
+        currency that's still in use, dating back to the 8th century.</p>
+</div>
+{% endblock %}

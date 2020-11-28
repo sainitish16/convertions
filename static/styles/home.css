@@ -1,0 +1,7 @@
+.homepage .card:hover {
+    transform:  scale(1.05) !important;
+    transition: all .2s;
+}
+.homepage .card .card-text{
+    font-size: 1.25rem;
+}
