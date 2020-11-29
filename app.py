@@ -9,14 +9,63 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     return render_template('index.html')
+@app.route("/convall", methods=["GET"])
+def convall():
+    return render_template('convall.html')
 @app.route("/currency-rates",methods = ["GET", "POST"])
 def rates():
     cntryCodesData = [
         {"code" :"", "desc" : "- Select Country - -"},
         {"code" :"AED","desc" : "United Arab Emirates Dirham"},
         {"code" :"ARS","desc" : "Argentine Peso"},
+        {"code" :"AUD","desc" : "Australian Dollar"},
+        {"code" :"BGN","desc" : "Bulgarian Lev"},
+        {"code" :"BRL","desc" : "Brazilian real"},
+        {"code" :"BSD","desc" : "Bahamian dollar"},
+        {"code" :"CAD","desc" : "Canadian dollar"},
+        {"code" :"CHF","desc" : "Swiss Franc"},
+        {"code" :"CLP","desc" : "Chilean peso"},
+        {"code" :"CNY","desc" : "renminbi"},
+        {"code" :"COP","desc" : "Colombian peso"},
+        {"code" :"CZK","desc" : "Czech koruna"},
+        {"code" :"DKK","desc" : "Danish Krone"},
+        {"code" :"DOP","desc" : "Dominican peso"},
+        {"code" :"EGP","desc" : "Egyptian Pound"},
+        {"code" :"EUR","desc" : "Euro"},
+        {"code" :"FJD","desc" : "Fijian dollar"},
+        {"code" :"GBP","desc" : "British Pound"},
+        {"code" :"GTQ","desc" : "Guatemalan quetzal"},
+        {"code" :"HKD","desc" : "Hong Kong dollar"},
+        {"code" :"HRK","desc" : "Croatian kuna"},
+        {"code" :"HUF","desc" : "Hungarian forint"},
+        {"code" :"ILS","desc" : "Israeli new shekel"},
         {"code" :"INR","desc" : "Indian Rupee"},
-        {"code" :"USD","desc" : "United States Dollar"},
+        {"code" :"ISK","desc" : "Iceland Krona"},
+        {"code" :"JPY","desc" : "Japanese yen"},
+        {"code" :"KZT","desc" : "Kazakhstan tenge"},
+        {"code" :"MVR","desc" : "Maldivian Rufiyaa"},
+        {"code" :"MXN","desc" : "Mexican peso"},
+        {"code" :"MYR","desc" : "Malaysian ringgit"},
+        {"code" :"NOK","desc" : "Norwegian Krone"},
+        {"code" :"NZD","desc" : "New Zealand dollar"},
+        {"code" :"PAB","desc" : "Panama Balboa"},
+        {"code" :"PEN","desc" : "Peruvian Sol"},
+        {"code" :"PHP","desc" : "Philippine peso"},
+        {"code" :"PKR","desc" : "Pakistani rupee"},
+        {"code" :"PLN","desc" : "Polish zloty"},
+        {"code" :"PYG","desc" : "Paraguay guarani"},
+        {"code" :"RON","desc" : "Romanian new leu"},
+        {"code" :"RUB","desc" : "Russian ruble"},
+        {"code" :"SAR","desc" : "Saudi Riyal"},
+        {"code" :"SEK","desc" : "Swedish krona"},
+        {"code" :"SGD","desc" : "Singapore Dollar"},
+        {"code" :"THB","desc" : "Thai Baht"},
+        {"code" :"TRY","desc" : "Turkish currency"},
+        {"code" :"TWD","desc" : "New Taiwan dollar "},
+        {"code" :"UAH","desc" : "Hryvnia"},
+        {"code" :"USD","desc" : "US Dollar"},
+        {"code" :"UYU","desc" : "Uruguayan peso"},
+        {"code" :"ZAR","desc" : "South African rand"},
     ]
     if request.method == "POST":
         url = 'https://v6.exchangerate-api.com/v6/'+key+'/latest/'+str(request.form['from'])
